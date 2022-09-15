@@ -1,25 +1,20 @@
-import { User } from "../../../entities/User";
-import { IUsersRepository } from "../../../repositories/User/IUsersRepository";
-import { ICreateUserRequestDTO } from "./createDTO";
+import { Ad } from "../../../models/ad";
+import { AdRepository } from "../../../repositories/Ad/AdRepository";
+import { CreateAdDTO } from "./createDTO";
 
-export class CreateUserUseCase {
+export class CreateAdUseCase {
   constructor(
-    private usersRepository: IUsersRepository
+    private adRepository: AdRepository
   ) { }
 
-  async execute(data: ICreateUserRequestDTO) {
-    const userAlreadyExists = await this.usersRepository.findByOne(data.email)
+  async execute(data: CreateAdDTO) {
+    const adAlreadyExist = await this.adRepository.findByName(data.name)
 
-    if (userAlreadyExists) {
-      throw new Error("User already exists.");
+    if (adAlreadyExist) {
+      throw new Error("ads already exists.");
     }
+    const ads = new Ad(data)
 
-    if (data.password !== data.matchPassword) {
-      throw new Error("Passwords don't match")
-    }
-
-    const user = new User(data)
-
-    await this.usersRepository.create(user)
+    await this.adRepository.create(data.gameId, ads)
   }
 }

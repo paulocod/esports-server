@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { ListAllAdsUseCase } from "./listAllUseCase";
+import { ListDiscordAdsUseCase } from "./listDiscordUseCase";
 
-export class ListAllAdsController {
+export class ListDiscordAdsController {
   constructor(
-    private listAllAdsUseCase: ListAllAdsUseCase
+    private listDiscordAdsUseCase: ListDiscordAdsUseCase
   ) { }
 
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.params
     try {
-      const ads = await this.listAllAdsUseCase.execute({
+      const ads = await this.listDiscordAdsUseCase.execute({
         id
       })
       return response.status(201).send(ads)

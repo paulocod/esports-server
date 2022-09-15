@@ -1,6 +1,10 @@
-export interface ICreateUserRequestDTO {
+export interface CreateAdDTO {
+  gameId: string
   name: string
-  email: string
-  password: string
-  matchPassword: string
+  yearsPlaying: number
+  discord: string
+  weekDays: string
+  hoursStart: string
+  hourEnd: string
+  useVoiceChannel: boolean
 }

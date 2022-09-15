@@ -1,15 +1,15 @@
-import { PostgresUsersRepository } from "../../../repositories/User/implementations/PostgresUsersRepository";
-import { CreateUserController } from "./createController";
-import { CreateUserUseCase } from "./createUseCase";
+import { SqLiteAdRepository } from "../../../repositories/Ad/AdImplementRepository";
+import { CreateAdsController } from "./createController";
+import { CreateAdUseCase } from "./createUseCase";
 
-const postgresUsersRepository = new PostgresUsersRepository()
+const sqliteAdRepository = new SqLiteAdRepository()
 
-const createUserUseCase = new CreateUserUseCase(
-  postgresUsersRepository
+const createAdsUseCase = new CreateAdUseCase(
+  sqliteAdRepository
 )
 
-const createUserController = new CreateUserController(
-  createUserUseCase
+const createAdsController = new CreateAdsController(
+  createAdsUseCase
 )
 
-export { createUserUseCase, createUserController };
+export { createAdsUseCase, createAdsController };

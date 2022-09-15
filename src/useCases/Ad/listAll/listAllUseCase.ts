@@ -1,12 +1,13 @@
-import { IUsersRepository } from "../../../repositories/User/IUsersRepository";
+import { AdRepository } from "../../../repositories/Ad/AdRepository";
+import { ListAllAdDTO } from "./listAllDTO";
 
-export class ListAllUserUseCase {
+export class ListAllAdsUseCase {
   constructor(
-    private usersRepository: IUsersRepository
+    private AdRepository: AdRepository
   ) { }
 
-  async execute() {
-    const users = await this.usersRepository.findAll()
-    return users
+  async execute(data: ListAllAdDTO) {
+    const ads = await this.AdRepository.findByGameId(data.id)
+    return ads
   }
 }
