@@ -4,7 +4,7 @@ export interface CreateAdDTO {
   yearsPlaying: number
   discord: string
   weekDays: string
-  hoursStart: string
-  hourEnd: string
+  hoursStart: number
+  hourEnd: number
   useVoiceChannel: boolean
 }

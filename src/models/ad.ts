@@ -4,8 +4,8 @@ export class Ad {
   public yearsPlaying: number
   public discord: string
   public weekDays: string
-  public hoursStart: string
-  public hourEnd: string
+  public hoursStart: number
+  public hourEnd: number
   public useVoiceChannel: boolean
   public createdAt?: Date
   public gameId?: string

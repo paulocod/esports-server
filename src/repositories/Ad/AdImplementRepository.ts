@@ -5,8 +5,8 @@ import { AdRepository } from "./AdRepository";
 
 export class SqLiteAdRepository implements AdRepository {
   async create(gameId: string, ad: Ad): Promise<void> {
-    const convertedhoursStart = hoursToMinutes(ad.hoursStart)
-    const convertedhourEnd = hoursToMinutes(ad.hourEnd)
+    const convertedhoursStartToMinutes = hoursToMinutes(ad.hoursStart)
+    const convertedhourEndToMinutes = hoursToMinutes(ad.hourEnd)
     await prisma.ad.create({
       data: {
         gameId: gameId,
@@ -14,8 +14,8 @@ export class SqLiteAdRepository implements AdRepository {
         yearsPlaying: ad.yearsPlaying,
         discord: ad.discord,
         weekDays: ad.weekDays,
-        hoursStart: convertedhoursStart,
-        hourEnd: convertedhourEnd,
+        hoursStart: convertedhoursStartToMinutes,
+        hourEnd: convertedhourEndToMinutes,
         useVoiceChannel: ad.useVoiceChannel,
       }
     })

@@ -25,8 +25,8 @@ model Ad {
   yearsPlaying    Int      @map("year_playing")
   discord         String
   weekDays        String   @map("week_day")
-  hoursStart      String      @map("hour_start")
-  hourEnd         String      @map("hour_end")
+  hoursStart      Int      @map("hour_start")
+  hourEnd         Int      @map("hour_end")
   useVoiceChannel Boolean  @map("use_voice_channel")
   createdAt       DateTime @default(now()) @map("created_at")
   game            Game     @relation(fields: [gameId], references: [id])
