@@ -7,28 +7,20 @@ export class SqLiteAdRepository implements AdRepository {
   async create(gameId: string, ad: Ad): Promise<void> {
     const convertedhoursStartToMinutes = hoursToMinutes(ad.hoursStart)
     const convertedhourEndToMinutes = hoursToMinutes(ad.hourEnd)
+    const ArrayWeekDaysToString = Array(ad.weekDays).join(',')
     await prisma.ad.create({
       data: {
         gameId: gameId,
         name: ad.name,
         yearsPlaying: ad.yearsPlaying,
         discord: ad.discord,
-        weekDays: ad.weekDays,
+        weekDays: ArrayWeekDaysToString,
         hoursStart: convertedhoursStartToMinutes,
         hourEnd: convertedhourEndToMinutes,
         useVoiceChannel: ad.useVoiceChannel,
       }
     })
     return
-  }
-
-  async findByName(name: string): Promise<Ad | null> {
-    const ad = await prisma.ad.findFirst({
-      where: {
-        name: name
-      }
-    })
-    return ad
   }
 
   async findByGameId(gameId: string): Promise<Ad[]> {
